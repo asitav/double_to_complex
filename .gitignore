@@ -1,0 +1,17 @@
+*.o
+*.a
+build/*
+
+GPATH
+GRTAGS
+GTAGS
+
+#misc files
+TAGS
+**/*.dat
+**/*.plt
+**/fort.*
+**/*.diff
+**/bak.*
+**/*.bak
+install/
