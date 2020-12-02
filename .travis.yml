@@ -44,3 +44,6 @@ script:
   - cd $D2C_DIR/build
   - make
   - bin/d2c
+  - cmake -DD2C_COMPLEX:BOOL=OFF ../ 
+  - make clean; make
+  - bin/d2c
