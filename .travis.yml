@@ -1,0 +1,46 @@
+language: C++
+
+os:
+  - linux
+
+sudo: required
+dist: trusty
+group: edge
+
+notifications:
+    email: false
+
+git:
+  depth: 10
+
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - cmake
+      #    - libblas-dev
+      #    - liblapack-dev
+      #    - libopenmpi-dev
+      #    - openmpi-bin
+
+before_install:
+  # install prereqs
+  #- pip install --upgrade pip
+
+  # Download the external dependencies
+  - export INSTALL_PREFIX=/home/$USER
+  - cd $INSTALL_PREFIX
+  - git clone https://github.com/asitav/double_to_complex.git
+  - export D2C_DIR=/home/$USER/double_to_complex
+
+install:
+  - cd $D2C_DIR
+  - mkdir -p build
+  - cd build
+  - cmake -DD2C_COMPLEX:BOOL=ON ../ 
+
+script: 
+  - cd $D2C_DIR/build
+  - make
+  - bin/d2c
